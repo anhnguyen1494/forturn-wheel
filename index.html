@@ -173,9 +173,13 @@
         //test khi có picked có sẵn
         //picked = 5
         //rotation = (data.length - picked) * (360/data.length)
+        if(a == 'NaN'){
+            picked = Math.floor(Math.random() * 10);
+        }else{
+            picked = a-1;
+        }
 
-        picked = a-1;
-        rotation = (360 - (picked*360)/data.length) + 360*10;
+        rotation = (360 - (picked*360)/data.length) + 360*Math.floor(Math.random() * 10);
         console.log(ps,rotation,picked+1);
 
         if(oldpick.indexOf(picked) !== -1){
