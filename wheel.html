@@ -91,7 +91,8 @@ SOFTWARE.
                     {"label":"Question 6",  "question":"What CSS property is used for changing the background color of a box?"}, //background-color
                     {"label":"Question 7",  "question":"Which word is used for specifying an HTML tag that is inside another tag?"}, //nesting
                     {"label":"Question 8",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
-                    {"label":"Question 9",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
+                    {"label":"Question 8",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
+                    {"label":"Question 8",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
         ];
 
 
@@ -121,19 +122,19 @@ SOFTWARE.
             .attr("class", "slice");
 
 
-        arcs.append("defs")
-            .append('pattern')
-            .attr('id', 'locked2')
-            .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 100)
-            .attr('height', 100)
-            .append("image")
-            .attr("xlink:href", "https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0ae83373fe7bf60aaf6ceb8daa337fc9&w=1000&q=80")
-            .attr('width', 100)
-            .attr('height', 100);
+//        arcs.append("defs")
+//            .append('pattern')
+//            .attr('id', 'locked2')
+//            .attr('patternUnits', 'userSpaceOnUse')
+//            .attr('width', 100)
+//            .attr('height', 100)
+//            .append("image")
+//            .attr("xlink:href", "https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0ae83373fe7bf60aaf6ceb8daa337fc9&w=1000&q=80")
+//            .attr('width', 100)
+//            .attr('height', 100);
         //màu vòng quay
         arcs.append("path")
-            .attr("fill", function(d, i){ return 'red'; })
+            .attr("fill", function(d, i){ return color(i); })
             .attr("d", function (d) { return arc(d); });
 
         // add the text
@@ -148,15 +149,15 @@ SOFTWARE.
 //                return data[i].label;
 //            });
         arcs.append("svg:image")
-            .attr("transform", function(d){
-                d.innerRadius = 0;
-                d.outerRadius = r;
-                d.angle = (d.startAngle + d.endAngle)/2;
-                return "rotate(" + (d.angle * 180 / Math.PI - 107.5 ) + ")translate(" + (d.outerRadius - 120) +")";
-            })
-            .attr('width', 100)
-            .attr('height', 100)
-            .attr("xlink:href", "https://olm.vn/images/summary/13518732381118953770round_button-hi.png");
+        .attr("transform", function(d){
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            d.angle = (d.startAngle + d.endAngle)/2;
+            return "rotate(" + (d.angle * 180 / Math.PI - 107.5) + ")translate(" + (d.outerRadius - 120) +")";
+        })
+        .attr('width', 100)
+        .attr('height', 100)
+        .attr("xlink:href", "./test.jpg");
         container.on("click", spin);
 
         function spin(d){
@@ -175,14 +176,17 @@ SOFTWARE.
             var  ps       = 360/data.length,
                  pieslice = Math.round(1440/data.length),
                  rng      = Math.floor((Math.random() * 1440) + 360);
-            rotation = (Math.round(rng / ps) * ps);
+//            rotation = (Math.round(rng / ps) * ps);
+//            picked = Math.round(data.length - (rotation % 360)/ps);
+//            picked = picked >= data.length ? (picked % data.length) : picked;
+            //test khi có picked có sẵn
+            //picked = 5
+            //rotation = (data.length - picked) * (360/data.length)
 
-            picked = Math.round(data.length - (rotation % 360)/ps);
-            picked = picked >= data.length ? (picked % data.length) : picked;
+            picked = 1;
+            rotation = 360 - (picked*360)/data.length;
+            console.log(ps,rotation,picked+1);
 
-			console.log(rotation);
-			console.log(picked);
-			console.log(oldpick.indexOf(picked));
             if(oldpick.indexOf(picked) !== -1){
                 d3.select(this).call(spin);
                 return;
