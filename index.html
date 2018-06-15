@@ -91,8 +91,8 @@
         {"label":"Question 6",  "question":"What CSS property is used for changing the background color of a box?"}, //background-color
         {"label":"Question 7",  "question":"Which word is used for specifying an HTML tag that is inside another tag?"}, //nesting
         {"label":"Question 8",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
-        {"label":"Question 8",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
-        {"label":"Question 8",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
+        {"label":"Question 9",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
+        {"label":"Question 10",  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
     ];
 
 
@@ -176,12 +176,12 @@
         if(isNaN(a)){
             picked = Math.floor(Math.random() * 10) % data.length;
         }else{
-            picked = a-1;
+            picked = a;
         }
 
-        rotation = (360 - (picked*360)/data.length) + 360*Math.floor(Math.random() * 10);
-        console.log(ps,rotation,picked+1);
-
+        rotation = (360 - (picked*360)/data.length) + 360 + 360*(Math.floor(Math.random() * 10));
+        //picked chọn vị trí muốn dừng trong mảng [0...]
+        //rotation số vòng quay
         if(oldpick.indexOf(picked) !== -1){
             d3.select(this).call(spin);
             return;
