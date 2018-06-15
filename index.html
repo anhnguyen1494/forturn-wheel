@@ -173,8 +173,8 @@
         //test khi có picked có sẵn
         //picked = 5
         //rotation = (data.length - picked) * (360/data.length)
-        if(a == 'NaN'){
-            picked = Math.floor(Math.random() * 10);
+        if(isNaN(a)){
+            picked = Math.floor(Math.random() * 10) % data.length;
         }else{
             picked = a-1;
         }
